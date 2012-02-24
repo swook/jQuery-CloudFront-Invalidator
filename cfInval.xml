@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+	<meta>
+		<author>Seon-Wook Park</author>
+	</meta>
+
+	<bindings>
+		<select itemPath="" produces="XML">
+			<urls>
+				<url></url>
+			</urls>
+			<inputs>
+				<key id='url' type='xs:string' paramType='variable' required='true' />
+				<key id='meth' type='xs:string' paramType='variable' required='true' />
+				<key id='auth' type='xs:string' paramType='variable' required='true' />
+				<key id='date' type='xs:string' paramType='variable' required='true' />
+				<key id='content' type='xs:string' paramType='variable' />
+			</inputs>
+			<execute><![CDATA[
+				var request_obj = y.rest(url), response_obj;
+				request_obj.followRedirects(false).accept('text/xml').contentType('text/xml').header('Authorization', auth).header('Date', date);
+				if (meth == 'POST') response_obj = request_obj.post(content);
+				else response_obj = request_obj.get();
+				response.object = {
+					request: {
+						'URL': url,
+						'Method': meth,
+						'Headers': request_obj.headers,
+						'POST': content
+					},
+					'status': response_obj.status,
+					'headers': response_obj.headers,
+					'html': y.xmlToJson(response_obj.response)
+				};
+			]]></execute>
+		</select>
+	</bindings>
+</table>
