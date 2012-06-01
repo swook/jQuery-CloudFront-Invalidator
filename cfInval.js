@@ -122,7 +122,7 @@ var cfInval = {
 		var aws = {};
 		aws.url = 'https://cloudfront.amazonaws.com/2010-11-01/distribution/'+c+'/invalidation';
 		if (prop && prop.urlTail) aws.url += prop.urlTail;
-		aws.date = new Date().toGMTString();
+		aws.date = new Date().toUTCString();
 		aws.auth = 'AWS '+a+':'+
 				   btoa(hex2a(Crypto.HMAC(Crypto.SHA1, utf8Encode(aws.date), utf8Encode(b))));
 		aws.method = (prop && prop.method) ? prop.method : 'GET';
@@ -214,7 +214,7 @@ var cfInval = {
 		}, {urlTail: tail});
 	},
 	postInvalidation: function(files, ref) {
-		if (!ref || ref == '') ref = new Date().toGMTString();
+		if (!ref || ref == '') ref = new Date().toUTCString();
 		var req = {
 			Path: [],
 			CallerReference: [ref]
@@ -287,10 +287,10 @@ var cfInval = {
 		if (uri.file == '') error = 'Directory';
 		if (uri.relative == '/p'+cfInval.parseURL('/'+path).relative) uri.path = uri.path.slice(2);
 		if (uri.path == '/p/cloudfront-invalidator.html') error = 'Invalid Entry';
-		if ($('.currentpaths .path[path="'+uri.path+'"]', cfInvalUI.page).length > 0)
+		if ($('.currentpaths .path[path="'+uri.path+uri.query+'"]', cfInvalUI.page).length > 0)
 			error = 'Duplicate Entry';
 		return {
-			path: (error) ? path : uri.path,
+			path: (error) ? path : uri.path+uri.query,
 			error: error
 		};
 	},
