@@ -357,17 +357,17 @@ var cfInvalUI = {
 				'<div id="cf-access">'+
 					'<span>Access Key ID</span>'+
 					'<a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key#cred_block" target="_blank">Get It</a>'+
-					'<input type="text" placeholder="Example: 0PN5J17HBGZHT7JJ3X82"/>'+
+					'<input type="text" placeholder="Example: 0PN5J17HBGZHT7JJ3X82" tabindex="1"/>'+
 				'</div>'+
 				'<div id="cf-secret">'+
 					'<span>Secret Access Key</span>'+
 					'<a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key#cred_block" target="_blank">Get It</a>'+
-					'<input type="password" placeholder="Example: /Ml61L9VxlzloZ091/lkqVV5X1/YvaJtI9hW4Wr9"/>'+
+					'<input type="password" placeholder="Example: /Ml61L9VxlzloZ091/lkqVV5X1/YvaJtI9hW4Wr9" tabindex="2"/>'+
 				'</div>'+
 				'<div id="cf-distro">'+
 					'<span>Distribution ID</span>'+
 					'<a href="https://console.aws.amazon.com/cloudfront/home" target="_blank">Get It</a>'+
-					'<input list="distroid" type="text" placeholder="Example: E3GBU28YOG99FR" />'+
+					'<input list="distroid" type="text" placeholder="Example: E3GBU28YOG99FR" tabindex="3"/>'+
 					'<datalist id="distroid"><select></select></datalist>'+
 				'</div>'+
 			'</div>'
